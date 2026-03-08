@@ -8,17 +8,17 @@ const slides = [
     {
         title: "The Golden Standard of Kerala Snacks",
         subtitle: "Hand-picked Nendran bananas, sliced thin and fried to perfection.",
-        image: "/assets/hero/hero_banana_chips.png",
+        image: "/assets/hero/1.png",
     },
     {
         title: "Traditional Spice Blends",
         subtitle: "Recipes passed down through generations, now delivered to your door.",
-        image: "/assets/hero/hero_spicy_mixture.png",
+        image: "/assets/hero/2.png",
     },
     {
         title: "Premium Quality, Pure Taste",
         subtitle: "No preservatives, no artificial colors. Just pure Kerala goodness.",
-        image: "/assets/hero/hero_tapioca_chips.png",
+        image: "/assets/hero/3.png",
     }
 ];
 
