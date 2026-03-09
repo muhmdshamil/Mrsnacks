@@ -125,12 +125,12 @@ export default function Hero() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </Link>
-                        <button className="border border-zinc-200 bg-transparent text-zinc-800 px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
+                        <Link href="/story"className="border border-zinc-200 bg-transparent text-zinc-800 px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
                             <svg className="w-6 h-6 text-[#22C55E]" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M17.5 2C16.5 2 15.5 2.2 14.5 2.6C12.5 3.3 11 5 10.5 7C10.2 8.3 10.4 9.7 11.2 10.8L3.6 18.4C3.2 18.8 3.2 19.5 3.6 19.9L4.1 20.4C4.5 20.8 5.2 20.8 5.6 20.4L13.2 12.8C14.3 13.6 15.7 13.8 17 13.5C19 13 20.7 11.5 21.4 9.5C21.8 8.5 22 7.5 22 6.5C22 4 20 2 17.5 2ZM17 9.5C16.2 9.5 15.5 8.8 15.5 8C15.5 7.2 16.2 6.5 17 6.5C17.8 6.5 18.5 7.2 18.5 8C18.5 8.8 17.8 9.5 17 9.5Z" />
                             </svg>
                             <span className="text-[#DCA325]">Our Story</span>
-                        </button>
+                        </Link>
                     </motion.div>
 
                     {/* Feature Badges - Scrollable on very small screens, exact replica */}
