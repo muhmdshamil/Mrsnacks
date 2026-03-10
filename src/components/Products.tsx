@@ -51,10 +51,20 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
 
     // Combine static products with Storyblok products provided via the 'blok' prop
     // Handles both singular 'product' and plural 'products' fields
-    const dynamicItems = blok?.product || blok?.products || [];
+    let dynamicItems = blok?.product || blok?.products || [];
+
+    // If it's a Page component with body, look for Products in its body
+    if (dynamicItems.length === 0 && blok?.body) {
+        const productsBlok = blok.body.find((b: any) => b.component === "Products");
+        if (productsBlok) {
+            dynamicItems = productsBlok.product || productsBlok.products || [];
+        }
+    }
+
     let items = [...staticProducts, ...dynamicItems];
 
     const displayLimit = limit || blok?.limit;
+
 
     if (displayLimit) {
         items = items.slice(0, Number(displayLimit));

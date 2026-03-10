@@ -51,10 +51,20 @@ export default function ProductList({ blok }: { blok?: any }) {
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+    const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
 
     // Combine items
-    const dynamicItems = (blok?.product || blok?.products || []).map((p: any) => ({
+    let storyblokProducts = blok?.product || blok?.products || [];
+
+    // If it's a Page component with body, look for Products in its body
+    if (storyblokProducts.length === 0 && blok?.body) {
+        const productsBlok = blok.body.find((b: any) => b.component === "Products");
+        if (productsBlok) {
+            storyblokProducts = productsBlok.product || productsBlok.products || [];
+        }
+    }
+
+    const dynamicItems = storyblokProducts.map((p: any) => ({
         ...p,
         price: parseInt(p.price) || 0,
         rating: p.rating || 5.0,
@@ -62,6 +72,7 @@ export default function ProductList({ blok }: { blok?: any }) {
         flavor: p.flavor || "",
         category: p.category || "General"
     }));
+
 
     const allItems = useMemo(() => [...staticProducts, ...dynamicItems], [dynamicItems]);
 
@@ -120,8 +131,8 @@ export default function ProductList({ blok }: { blok?: any }) {
                         <input
                             type="range"
                             min="0"
-                            max="1000"
-                            step="50"
+                            max="5000"
+                            step="100"
                             value={priceRange[1]}
                             onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
                             className="accent-[#F39200] w-full max-w-[80px] sm:w-24 h-1.5 bg-zinc-200 rounded-lg cursor-pointer mx-auto"
@@ -129,6 +140,7 @@ export default function ProductList({ blok }: { blok?: any }) {
                     </div>
                 </div>
             </motion.div>
+
 
             {/* Product Grid */}
             {filteredItems.length > 0 ? (

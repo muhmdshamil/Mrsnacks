@@ -9,13 +9,38 @@ export default async function ProductsPage() {
     let story = null;
 
     try {
+        // 1. Try 'products' slug
         const { data } = await storyblokApi.get(`cdn/stories/products`, {
             version: "draft",
         });
         story = data ? data.story : null;
     } catch (error) {
-        console.log("Products page: No Storyblok data found, using static products.");
+        // Continue to next fallback
     }
+
+    if (!story) {
+        try {
+            // 2. Try finding any story with 'Products' component
+            const { data } = await storyblokApi.get("cdn/stories", {
+                version: "draft",
+                content_type: "Products",
+            });
+            if (data.stories && data.stories.length > 0) {
+                story = data.stories[0];
+            }
+        } catch (err) { }
+    }
+
+    if (!story) {
+        try {
+            // 3. Fallback to home if products block is there
+            const { data } = await storyblokApi.get(`cdn/stories/home`, {
+                version: "draft",
+            });
+            story = data ? data.story : null;
+        } catch (err) { }
+    }
+
 
     return (
         <main className="min-h-screen pt-28 bg-[#FEF9F2]">
