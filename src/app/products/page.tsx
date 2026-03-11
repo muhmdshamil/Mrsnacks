@@ -65,7 +65,7 @@ export default async function ProductsPage() {
                         to fiery mixtures, made with recipes passed down through generations.
                     </p>
 
-                    <div className="w-16 sm:w-24 h-1 sm:h-1.5 bg-[#F39200] rounded-full mt-6 sm:mt-8 opacity-20"></div>
+                    <div className="w-16 sm:w-24 h-2 sm:h-1.5 bg-[#F39200] rounded-full mt-6 sm:mt-8 opacity-20"></div>
                 </div>
                 <ProductList blok={story?.content} />
             </div>
