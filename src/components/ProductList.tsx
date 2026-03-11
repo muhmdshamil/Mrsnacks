@@ -10,7 +10,7 @@ import OrderForm from "./Order";
 const staticProducts = [
     {
         _uid: "static-1",
-        title: "Nendran Banana Chips",
+        title: "Banana Chips Classic",
         description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
         price: 199,
         image: { filename: "/assets/products/1.png" },
@@ -22,7 +22,7 @@ const staticProducts = [
     },
     {
         _uid: "static-2",
-        title: "Kerala Spicy Mixture",
+        title: "Mixture Spicy",
         description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
         price: 149,
         image: { filename: "/assets/products/2.png" },
@@ -34,7 +34,7 @@ const staticProducts = [
     },
     {
         _uid: "static-3",
-        title: "Potato Chips",
+        title: "Potato Tomato",
         description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
         price: 179,
         image: { filename: "/assets/products/3.png" },
@@ -43,12 +43,38 @@ const staticProducts = [
         gram: "150g",
         flavor: "Masala",
         category: "Chips"
+    },
+    {
+        _uid: "static-4",
+        title: "Banana Chips Masala",
+        description: "Crispy golden slices of Kerala's finest Nendran bananas,fried in pure coconut oil and organic kerala spices",
+        price: 199,
+        image: { filename: "/assets/products/4.png" },
+        badge: "Best Seller",
+        rating: 4.9,
+        gram: "150g",
+        flavor: "Masala",
+        category: "Chips",
+        background: "linear-gradient(167.57deg, rgba(167, 197, 175, 0.72) 9.03%, rgba(81, 95, 84, 0.84) 89.01%)"
+    },
+    {
+        _uid: "static-5",
+        title: "Capiaco Chips Spicy",
+        description: "A fiery blend of crispy capiaco chips fries and aromatic spices",
+        price: 149,
+        image: { filename: "/assets/products/5.png" },
+        badge: "Spicy",
+        rating: 4.1,
+        gram: "150g",
+        flavor: "Chips",
+        category: "Chips",
+        background: "linear-gradient(180deg, rgba(220, 169, 53, 0.65) 0%, rgba(118, 91, 28, 0.78) 100%)"
     }
 ];
 
 export default function ProductList({ blok }: { blok?: any }) {
     const { addToCart } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string } | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
@@ -94,7 +120,8 @@ export default function ProductList({ blok }: { blok?: any }) {
             <OrderForm
                 isOpen={!!selectedProduct}
                 onClose={() => setSelectedProduct(null)}
-                productName={selectedProduct || undefined}
+                productName={selectedProduct?.title}
+                productFlavor={selectedProduct?.flavor}
             />
 
             {/* Filters & Search Header */}
@@ -165,11 +192,14 @@ export default function ProductList({ blok }: { blok?: any }) {
                             >
 
                                 {/* Image Section */}
-                                <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-[18px] sm:rounded-[24px] overflow-hidden flex items-center justify-center mb-3 sm:mb-6">
+                                <div
+                                    className="relative w-full aspect-[4/3] sm:aspect-square rounded-[18px] sm:rounded-[24px] overflow-hidden flex items-center justify-center mb-3 sm:mb-6"
+                                    style={product.background ? { background: product.background } : { background: '#F4F4F5' }}
+                                >
                                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 flex justify-between items-start z-10">
                                         {product.gram && (
                                             <div className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold bg-white/80 backdrop-blur-md text-zinc-700 shadow-sm border border-black/5">
-                                                {product.gram}
+                                                {product.badge}
                                             </div>
                                         )}
                                         {product.flavor && (
@@ -237,7 +267,7 @@ export default function ProductList({ blok }: { blok?: any }) {
                                                 <FiShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                             </button>
                                             <button
-                                                onClick={() => setSelectedProduct(product.title)}
+                                                onClick={() => setSelectedProduct({ title: product.title, flavor: product.flavor })}
                                                 className="flex-grow sm:px-6 h-8 sm:h-10 rounded-full font-extrabold text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] hover:scale-[1.02] transition-transform text-[10px] sm:text-sm"
                                             >
                                                 Order

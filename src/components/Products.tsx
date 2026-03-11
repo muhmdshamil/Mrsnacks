@@ -47,7 +47,7 @@ import { storyblokEditable } from "@storyblok/react";
 
 export default function Products({ blok, limit }: { blok?: any; limit?: number }) {
     const { addToCart } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string } | null>(null);
 
     // Combine static products with Storyblok products provided via the 'blok' prop
     // Handles both singular 'product' and plural 'products' fields
@@ -75,7 +75,8 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
             <OrderForm
                 isOpen={!!selectedProduct}
                 onClose={() => setSelectedProduct(null)}
-                productName={selectedProduct || undefined}
+                productName={selectedProduct?.title}
+                productFlavor={selectedProduct?.flavor}
             />
 
             <motion.div
@@ -185,7 +186,7 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
                                     <FiShoppingCart className="w-5 h-5" />
                                 </button>
                                 <button
-                                    onClick={() => setSelectedProduct(product.title)}
+                                    onClick={() => setSelectedProduct({ title: product.title, flavor: product.flavor })}
                                     className="flex-grow h-12 rounded-full font-bold text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] shadow-lg shadow-[#DF3920]/20 hover:scale-[1.02] transition-transform"
                                 >
                                     Order Now

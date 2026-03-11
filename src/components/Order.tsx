@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiX, FiSend, FiUser, FiMail, FiPhone, FiMapPin, FiPackage, FiLayers } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,18 +8,30 @@ type OrderFormProps = {
     isOpen: boolean;
     onClose: () => void;
     productName?: string;
+    productFlavor?: string;
     cartItems?: any[];
 };
 
-export default function OrderForm({ isOpen, onClose, productName, cartItems }: OrderFormProps) {
+export default function OrderForm({ isOpen, onClose, productName, productFlavor, cartItems }: OrderFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
         location: "",
-        flavor: productName || "Original Banana Chips",
+        flavor: productFlavor || productName || "Original",
         weight: "250g",
     });
+
+    // Reset flavor when product changes or modal opens
+    useEffect(() => {
+        if (isOpen) {
+            setFormData(prev => ({
+                ...prev,
+                flavor: productFlavor || productName || "Original"
+            }));
+        }
+    }, [isOpen, productName, productFlavor]);
+
 
     const flavors = [
         "Original Banana Chips",
@@ -40,7 +52,8 @@ export default function OrderForm({ isOpen, onClose, productName, cartItems }: O
             orderDetails = `*Order Summary:*%0A` +
                 cartItems.map(item => `- ${item.name} (${item.quantity}x)`).join(`%0A`);
         } else {
-            orderDetails = `*Product:* ${formData.flavor}%0A` +
+            const productLine = productName ? `*Product:* ${productName}%0A*Flavor:* ${formData.flavor}` : `*Product:* ${formData.flavor}`;
+            orderDetails = `${productLine}%0A` +
                 `*Weight:* ${formData.weight}`;
         }
 
