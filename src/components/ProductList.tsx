@@ -107,13 +107,13 @@ export default function ProductList({ blok }: { blok?: any }) {
         return allItems.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 item.description.toLowerCase().includes(searchQuery.toLowerCase());
-            const matchesCategory = categoryFilter === "All" || item.category === categoryFilter;
+            const matchesCategory = categoryFilter === "All" || item.category === categoryFilter || item.flavor === categoryFilter;
             const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1];
             return matchesSearch && matchesCategory && matchesPrice;
         });
     }, [allItems, searchQuery, categoryFilter, priceRange]);
 
-    const categories = ["All", ...Array.from(new Set(allItems.map(item => item.category)))];
+    const categories = ["All", "Masala", ...Array.from(new Set(allItems.map(item => item.category)))];
 
     return (
         <section className="pb-12 pt-0 px-6 max-w-7xl mx-auto w-full">
