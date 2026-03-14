@@ -8,6 +8,8 @@ type CartItem = {
     price: number;
     image: string;
     quantity: number;
+    gram?: string;
+    flavor?: string;
 };
 
 type CartContextType = {
@@ -34,7 +36,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
                     item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
                 );
             }
-            return [...prevItems, { id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 }];
+            return [...prevItems, {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1,
+                gram: product.gram,
+                flavor: product.flavor
+            }];
         });
         setIsCartOpen(true); // Open cart when item is added
     };

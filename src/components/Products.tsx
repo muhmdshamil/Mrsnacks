@@ -9,7 +9,7 @@ import { useCart } from "@/context/CartContext";
 import OrderForm from "./Order";
 
 const staticProducts = [
-     {
+    {
         _uid: "static-1",
         title: "Banana Chips Classic",
         description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
@@ -50,7 +50,7 @@ import { storyblokEditable } from "@storyblok/react";
 
 export default function Products({ blok, limit }: { blok?: any; limit?: number }) {
     const { addToCart } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string } | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string; price: number; gram: string } | null>(null);
 
     // Combine static products with Storyblok products provided via the 'blok' prop
     // Handles both singular 'product' and plural 'products' fields
@@ -80,6 +80,8 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
                 onClose={() => setSelectedProduct(null)}
                 productName={selectedProduct?.title}
                 productFlavor={selectedProduct?.flavor}
+                productPrice={selectedProduct?.price}
+                productBaseWeight={selectedProduct?.gram}
             />
 
             <motion.div
@@ -182,14 +184,21 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
                                         id: product._uid,
                                         name: product.title,
                                         price: parseInt(product.price),
-                                        image: product.image?.filename
+                                        image: product.image?.filename,
+                                        gram: product.gram || product.weight,
+                                        flavor: product.flavor
                                     })}
                                     className="w-12 sm:w-14 h-12 flex items-center justify-center shrink-0 rounded-full border-2 border-[#EAB308] text-[#EAB308] hover:bg-[#EAB308] hover:text-white transition-colors"
                                 >
                                     <FiShoppingCart className="w-5 h-5" />
                                 </button>
                                 <button
-                                    onClick={() => setSelectedProduct({ title: product.title, flavor: product.flavor })}
+                                    onClick={() => setSelectedProduct({
+                                        title: product.title,
+                                        flavor: product.flavor,
+                                        price: parseInt(product.price),
+                                        gram: product.gram || product.weight || "100g"
+                                    })}
                                     className="flex-grow h-12 rounded-full font-bold text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] shadow-lg shadow-[#DF3920]/20 hover:scale-[1.02] transition-transform"
                                 >
                                     Order Now

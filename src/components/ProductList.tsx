@@ -74,7 +74,7 @@ const staticProducts = [
 
 export default function ProductList({ blok }: { blok?: any }) {
     const { addToCart } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string } | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string; price: number; gram: string } | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
 
@@ -120,6 +120,8 @@ export default function ProductList({ blok }: { blok?: any }) {
                 onClose={() => setSelectedProduct(null)}
                 productName={selectedProduct?.title}
                 productFlavor={selectedProduct?.flavor}
+                productPrice={selectedProduct?.price}
+                productBaseWeight={selectedProduct?.gram}
             />
 
             {/* Filters & Search Header */}
@@ -245,14 +247,21 @@ export default function ProductList({ blok }: { blok?: any }) {
                                                     id: product._uid,
                                                     name: product.title,
                                                     price: product.price,
-                                                    image: product.image?.filename
+                                                    image: product.image?.filename,
+                                                    gram: product.gram,
+                                                    flavor: product.flavor
                                                 })}
                                                 className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-zinc-200 text-zinc-600 hover:bg-[#F39200] hover:text-white hover:border-[#F39200] transition-all"
                                             >
                                                 <FiShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                             </button>
                                             <button
-                                                onClick={() => setSelectedProduct({ title: product.title, flavor: product.flavor })}
+                                                onClick={() => setSelectedProduct({
+                                                    title: product.title,
+                                                    flavor: product.flavor,
+                                                    price: product.price,
+                                                    gram: product.gram
+                                                })}
                                                 className="flex-grow sm:px-6 h-8 sm:h-10 rounded-full font-extrabold text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] hover:scale-[1.02] transition-transform text-[10px] sm:text-sm"
                                             >
                                                 Order

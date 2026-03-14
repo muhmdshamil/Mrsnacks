@@ -93,6 +93,12 @@ export default function Cart() {
                                                         <h3 className="font-bold text-zinc-800 leading-tight text-sm sm:text-base pr-4">
                                                             {item.name}
                                                         </h3>
+                                                        {(item.gram || item.flavor) && (
+                                                            <div className="flex flex-wrap gap-2 mt-1">
+                                                                {item.gram && <span className="text-[10px] bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-md font-bold">{item.gram}</span>}
+                                                                {item.flavor && <span className="text-[10px] bg-[#FACC15]/20 text-[#854D0E] px-2 py-0.5 rounded-md font-bold">{item.flavor}</span>}
+                                                            </div>
+                                                        )}
                                                         <button
                                                             onClick={() => removeFromCart(item.id)}
                                                             className="text-zinc-400 hover:text-red-500 transition-colors shrink-0"

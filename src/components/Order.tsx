@@ -9,17 +9,19 @@ type OrderFormProps = {
     onClose: () => void;
     productName?: string;
     productFlavor?: string;
+    productPrice?: number;
+    productBaseWeight?: string;
     cartItems?: any[];
 };
 
-export default function OrderForm({ isOpen, onClose, productName, productFlavor, cartItems }: OrderFormProps) {
+export default function OrderForm({ isOpen, onClose, productName, productFlavor, productPrice, productBaseWeight, cartItems }: OrderFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
         location: "",
         flavor: productFlavor || productName || "Original",
-        weight: "250g",
+        weight: productBaseWeight || "100g",
     });
 
     // Reset flavor when product changes or modal opens
@@ -27,44 +29,69 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
         if (isOpen) {
             setFormData(prev => ({
                 ...prev,
-                flavor: productFlavor || productName || "Original"
+                flavor: productFlavor || productName || "Original",
+                weight: productBaseWeight || "100g"
             }));
         }
-    }, [isOpen, productName, productFlavor]);
+    }, [isOpen, productName, productFlavor, productBaseWeight]);
 
 
-    const flavors = [
-        "Original Banana Chips",
-        "Spicy Banana Chips",
-        "Sweet Sharkara Varatti",
-        "Kerala Spicy Mixture",
-        "Potato Chips",
-        "Tapioca Chips",
-    ];
+    const flavors = ["Peri Peri", "Chilly Garlic"];
+    const weights = ["50g", "100g", "250g", "500g", "1kg"];
 
-    const weights = ["100g", "250g", "500g", "1kg"];
+    const calculateCurrentPrice = () => {
+        if (!productPrice || !productBaseWeight) return 0;
+
+        const getGrams = (w: string) => {
+            const val = parseInt(w);
+            if (w.toLowerCase().includes("kg")) return val * 1000;
+            return val;
+        };
+
+        const currentGrams = getGrams(formData.weight);
+        const baseGrams = getGrams(productBaseWeight);
+
+        return Math.round((currentGrams / baseGrams) * productPrice);
+    };
+
+    const currentTotalPrice = calculateCurrentPrice();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         let orderDetails = "";
         if (cartItems && cartItems.length > 0) {
-            orderDetails = `*Order Summary:*%0A` +
-                cartItems.map(item => `- ${item.name} (${item.quantity}x)`).join(`%0A`);
+            const itemsList = cartItems.map(item => {
+                const detail = [
+                    item.gram ? `[${item.gram}]` : "",
+                    item.flavor ? `[${item.flavor}]` : ""
+                ].filter(Boolean).join(" ");
+
+                return `- ${item.name} ${detail}\n   Quantity: ${item.quantity} x ₹${item.price} = ₹${item.price * item.quantity}`;
+            }).join("\n\n");
+
+            const totalAmount = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+            orderDetails = `*Order Summary:*\n${itemsList}\n\n` +
+                `*Total Products:* ${cartItems.length}\n` +
+                `*Total Quantity:* ${totalItems}\n` +
+                `*Subtotal Amount:* ₹${totalAmount}`;
         } else {
-            const productLine = productName ? `*Product:* ${productName}%0A*Flavor:* ${formData.flavor}` : `*Product:* ${formData.flavor}`;
-            orderDetails = `${productLine}%0A` +
-                `*Weight:* ${formData.weight}`;
+            const productLine = productName ? `*Product:* ${productName}\n*Flavor:* ${formData.flavor}` : `*Product:* ${formData.flavor}`;
+            orderDetails = `${productLine}\n` +
+                `*Weight:* ${formData.weight}\n` +
+                `*Price:* ₹${currentTotalPrice}`;
         }
 
-        const message = `*New Order from Mr Snackz Website*%0A%0A` +
-            `*Name:* ${formData.name}%0A` +
-            `*Email:* ${formData.email}%0A` +
-            `*Phone:* ${formData.phone}%0A` +
-            `*Location:* ${formData.location}%0A%0A` +
+        const message = `*New Order from Mr Snackz Website*\n\n` +
+            `*Name:* ${formData.name}\n` +
+            `*Email:* ${formData.email}\n` +
+            `*Phone:* ${formData.phone}\n` +
+            `*Location:* ${formData.location}\n\n` +
             orderDetails;
 
-        const whatsappUrl = `https://wa.me/918590199698?text=${message}`;
+        const whatsappUrl = `https://wa.me/918590199698?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
         onClose();
     };
@@ -168,20 +195,22 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
 
                             {/* Flavor & Weight - Only show for direct product orders */}
                             {(!cartItems || cartItems.length === 0) && (
-                                <div className="grid sm:grid-cols-2 gap-4">
-                                    <div className="flex flex-col gap-1.5">
-                                        <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Flavor</label>
-                                        <div className="relative">
-                                            <FiLayers className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
-                                            <select
-                                                className="w-full pl-11 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:border-[#DF3920] transition-all appearance-none outline-none"
-                                                value={formData.flavor}
-                                                onChange={(e) => setFormData({ ...formData, flavor: e.target.value })}
-                                            >
-                                                {flavors.map(f => <option key={f} value={f}>{f}</option>)}
-                                            </select>
+                                <div className={productName === "Banana Chips Masala" ? "grid sm:grid-cols-2 gap-4" : "flex flex-col gap-1.5"}>
+                                    {productName === "Banana Chips Masala" && (
+                                        <div className="flex flex-col gap-1.5">
+                                            <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Flavor</label>
+                                            <div className="relative">
+                                                <FiLayers className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+                                                <select
+                                                    className="w-full pl-11 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:border-[#DF3920] transition-all appearance-none outline-none"
+                                                    value={formData.flavor}
+                                                    onChange={(e) => setFormData({ ...formData, flavor: e.target.value })}
+                                                >
+                                                    {flavors.map(f => <option key={f} value={f}>{f}</option>)}
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                     <div className="flex flex-col gap-1.5">
                                         <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Weight</label>
                                         <div className="relative">
@@ -203,7 +232,9 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
                                 className="w-full mt-4 flex items-center justify-center gap-3 bg-[linear-gradient(90deg,#EC6D13_0%,#DF3920_100%)] text-white px-6 py-4 rounded-2xl font-black text-lg shadow-xl shadow-[#DF3920]/20 hover:scale-[1.02] active:scale-95 transition-all outline-none"
                             >
                                 <FiSend className="w-5 h-5" />
-                                Buy Now
+                                {(!cartItems || cartItems.length === 0) && currentTotalPrice > 0
+                                    ? `Buy Now - ₹${currentTotalPrice}`
+                                    : "Buy Now"}
                             </button>
                         </form>
                     </motion.div>

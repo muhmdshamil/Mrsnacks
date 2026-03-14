@@ -11,6 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mrsnackz.com"),
   title: {
     default: "Mrsnackz - Authentic Kerala Banana Chips & Snacks",
     template: "%s | Mrsnackz"
@@ -18,10 +19,20 @@ export const metadata: Metadata = {
   description: "Experience the authentic taste of Kerala with Mrsnackz. Artisan-crafted Nendran banana chips, spicy mixtures, and traditional treats made with pure coconut oil.",
   keywords: ["banana chips", "kerala snacks", "nendran chips", "mrsnacks", "mrsnackz", "authentic south indian snacks", "coconut oil fried snacks"],
   authors: [{ name: "Mrsnackz" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/assets/logo/logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/logo/logo.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/assets/logo/logo.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Mrsnackz - Authentic Kerala Banana Chips & Snacks",
     description: "Handcrafted Nendran banana chips from the heart of Kerala. Pure, crispy, and delicious.",
-    url: "https://mrsnackz.in",
+    url: "https://mrsnackz.com",
     siteName: "Mrsnackz",
     images: [
       {
