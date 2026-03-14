@@ -203,7 +203,7 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
                                 className="w-full mt-4 flex items-center justify-center gap-3 bg-[linear-gradient(90deg,#EC6D13_0%,#DF3920_100%)] text-white px-6 py-4 rounded-2xl font-black text-lg shadow-xl shadow-[#DF3920]/20 hover:scale-[1.02] active:scale-95 transition-all outline-none"
                             >
                                 <FiSend className="w-5 h-5" />
-                                Send Order to WhatsApp
+                                Buy Now
                             </button>
                         </form>
                     </motion.div>

@@ -4,14 +4,17 @@ import { getStoryblokApi } from "@/lib/storyblok";
 import ProductList from "@/components/ProductList";
 import ProductHero from "@/components/ProductHero";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductsPage() {
     const storyblokApi = getStoryblokApi();
+    const version = "draft"; // Or use "published" for production if they publish their content
     let story = null;
 
     try {
         // 1. Try 'products' slug
         const { data } = await storyblokApi.get(`cdn/stories/products`, {
-            version: "draft",
+            version: version,
         });
         story = data ? data.story : null;
     } catch (error) {
@@ -22,7 +25,7 @@ export default async function ProductsPage() {
         try {
             // 2. Try finding any story with 'Products' component
             const { data } = await storyblokApi.get("cdn/stories", {
-                version: "draft",
+                version: version,
                 content_type: "Products",
             });
             if (data.stories && data.stories.length > 0) {
@@ -35,7 +38,7 @@ export default async function ProductsPage() {
         try {
             // 3. Fallback to home if products block is there
             const { data } = await storyblokApi.get(`cdn/stories/home`, {
-                version: "draft",
+                version: version,
             });
             story = data ? data.story : null;
         } catch (err) { }

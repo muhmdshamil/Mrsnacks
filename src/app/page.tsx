@@ -6,14 +6,17 @@ import Footer from "@/components/Footer";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokComponent } from "@storyblok/react";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const storyblokApi = getStoryblokApi();
+  const version = "draft";
   let story = null;
 
   try {
     // 1. Try 'products' slug
     const { data } = await storyblokApi.get(`cdn/stories/products`, {
-      version: "draft",
+      version: version,
     });
     story = data ? data.story : null;
   } catch (err) {
@@ -24,7 +27,7 @@ export default async function Home() {
     try {
       // 2. Try 'home' slug
       const { data } = await storyblokApi.get(`cdn/stories/home`, {
-        version: "draft",
+        version: version,
       });
       story = data ? data.story : null;
     } catch (err) { }
@@ -34,7 +37,7 @@ export default async function Home() {
     try {
       // 3. Try finding any story with 'Products' component
       const { data } = await storyblokApi.get("cdn/stories", {
-        version: "draft",
+        version: version,
         content_type: "Products",
       });
       if (data.stories && data.stories.length > 0) {
