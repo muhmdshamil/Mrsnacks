@@ -12,11 +12,11 @@ const staticProducts = [
         _uid: "static-1",
         title: "Banana Chips Classic",
         description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
-        price: 199,
+        price: 80,
         image: { filename: "/assets/products/1.png" },
         badge: "Best Seller",
         rating: 4.9,
-        gram: "250g",
+        gram: "100g",
         flavor: "Classic Salted",
         category: "Chips"
     },
@@ -24,23 +24,23 @@ const staticProducts = [
         _uid: "static-2",
         title: "Mixture Spicy",
         description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
-        price: 149,
+        price: 60,
         image: { filename: "/assets/products/2.png" },
         badge: "Spicy",
         rating: 4.8,
-        gram: "200g",
+        gram: "100g",
         flavor: "Hot & Spicy",
         category: "Mixture"
     },
     {
         _uid: "static-3",
-        title: "Potato Tomato",
+        title: "Potato Chips",
         description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
-        price: 179,
+        price: 60,
         image: { filename: "/assets/products/3.png" },
         badge: "Traditional",
         rating: 4.7,
-        gram: "150g",
+        gram: "50g",
         flavor: "Masala",
         category: "Chips"
     },
@@ -48,24 +48,24 @@ const staticProducts = [
         _uid: "static-4",
         title: "Banana Chips Masala",
         description: "Crispy golden slices of Kerala's finest Nendran bananas,fried in pure coconut oil and organic kerala spices",
-        price: 199,
+        price: 80,
         image: { filename: "/assets/products/4.png" },
         badge: "Best Seller",
         rating: 4.9,
-        gram: "150g",
-        flavor: "Masala",
+        gram: "100g",
+        flavor: "Chilly Garlic",
         category: "Chips",
         background: "linear-gradient(167.57deg, rgba(167, 197, 175, 0.72) 9.03%, rgba(81, 95, 84, 0.84) 89.01%)"
     },
     {
         _uid: "static-5",
-        title: "Capiaco Chips Spicy",
-        description: "A fiery blend of crispy capiaco chips fries and aromatic spices",
-        price: 149,
+        title: "Tapiaco Chips Spicy",
+        description: "A fiery blend of crispy Tapiaco chips fries and aromatic spices",
+        price: 50,
         image: { filename: "/assets/products/5.png" },
         badge: "Spicy",
         rating: 4.1,
-        gram: "150g",
+        gram: "50g",
         flavor: "Chips",
         category: "Chips",
         background: "linear-gradient(180deg, rgba(220, 169, 53, 0.65) 0%, rgba(118, 91, 28, 0.78) 100%)"
@@ -77,7 +77,6 @@ export default function ProductList({ blok }: { blok?: any }) {
     const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string } | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
 
     // Combine items
     let storyblokProducts = blok?.product || blok?.products || [];
@@ -108,10 +107,9 @@ export default function ProductList({ blok }: { blok?: any }) {
             const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 item.description.toLowerCase().includes(searchQuery.toLowerCase());
             const matchesCategory = categoryFilter === "All" || item.category === categoryFilter || item.flavor === categoryFilter;
-            const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1];
-            return matchesSearch && matchesCategory && matchesPrice;
+            return matchesSearch && matchesCategory;
         });
-    }, [allItems, searchQuery, categoryFilter, priceRange]);
+    }, [allItems, searchQuery, categoryFilter]);
 
     const categories = ["All", "Masala", ...Array.from(new Set(allItems.map(item => item.category)))];
 
@@ -151,19 +149,6 @@ export default function ProductList({ blok }: { blok?: any }) {
                             {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                         </select>
                         <FiChevronDown className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400 w-4 h-4" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3 bg-zinc-50 border border-zinc-200 rounded-xl sm:rounded-2xl flex-1 min-w-0">
-                        <span className="text-[10px] sm:text-sm font-bold text-zinc-500 truncate whitespace-nowrap">₹{priceRange[0]} - ₹{priceRange[1]}</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max="5000"
-                            step="100"
-                            value={priceRange[1]}
-                            onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-                            className="accent-[#F39200] w-full max-w-[80px] sm:w-24 h-1.5 bg-zinc-200 rounded-lg cursor-pointer mx-auto"
-                        />
                     </div>
                 </div>
             </motion.div>
@@ -283,7 +268,7 @@ export default function ProductList({ blok }: { blok?: any }) {
                 <div className="text-center py-24 bg-zinc-50 rounded-[40px] border border-dashed border-zinc-200">
                     <p className="text-zinc-400 font-medium">No products found matching your criteria.</p>
                     <button
-                        onClick={() => { setSearchQuery(""); setCategoryFilter("All"); setPriceRange([0, 1000]); }}
+                        onClick={() => { setSearchQuery(""); setCategoryFilter("All"); }}
                         className="mt-4 text-[#F39200] font-bold hover:underline"
                     >
                         Clear all filters

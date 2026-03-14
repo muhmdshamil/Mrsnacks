@@ -9,39 +9,42 @@ import { useCart } from "@/context/CartContext";
 import OrderForm from "./Order";
 
 const staticProducts = [
-    {
+     {
         _uid: "static-1",
-        title: "Nendran Banana Chips",
+        title: "Banana Chips Classic",
         description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
-        price: "199",
+        price: 80,
         image: { filename: "/assets/products/1.png" },
         badge: "Best Seller",
         rating: 4.9,
-        gram: "250g",
-        flavor: "Classic Salted"
+        gram: "100g",
+        flavor: "Classic Salted",
+        category: "Chips"
     },
     {
         _uid: "static-2",
-        title: "Kerala Spicy Mixture",
+        title: "Mixture Spicy",
         description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
-        price: "149",
+        price: 60,
         image: { filename: "/assets/products/2.png" },
         badge: "Spicy",
         rating: 4.8,
-        gram: "200g",
-        flavor: "Hot & Spicy"
+        gram: "100g",
+        flavor: "Hot & Spicy",
+        category: "Mixture"
     },
     {
         _uid: "static-3",
-        title: "Pottato chips",
+        title: "Potato Chips",
         description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
-        price: "179",
+        price: 60,
         image: { filename: "/assets/products/3.png" },
         badge: "Traditional",
         rating: 4.7,
-        gram: "150g",
-        flavor: "Masala"
-    }
+        gram: "50g",
+        flavor: "Masala",
+        category: "Chips"
+    },
 ];
 import { storyblokEditable } from "@storyblok/react";
 

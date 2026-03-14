@@ -3,6 +3,16 @@ import Footer from "@/components/Footer";
 import { getStoryblokApi } from "@/lib/storyblok";
 import ProductList from "@/components/ProductList";
 import ProductHero from "@/components/ProductHero";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Our Snack Collection",
+    description: "Explore our handcrafted selection of authentic Kerala snacks. From classic salted banana chips to peri peri and spicy mixtures, find your favorite golden crunch.",
+    openGraph: {
+        title: "Authentic Kerala Snacks Collection | Mrsnackz",
+        description: "Pure coconut oil fried snacks including Nendran bananas, potato chips, and malayali spicy mixtures.",
+    }
+};
 
 export const dynamic = "force-dynamic";
 
