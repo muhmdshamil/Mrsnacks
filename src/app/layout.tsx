@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Mrsnackz",
     images: [
       {
-        url: "/assets/logo/logo.png",
+        url: "/favicon.ico",
         width: 800,
         height: 600,
       },

@@ -59,7 +59,7 @@ export default async function ProductsPage() {
         <main className="min-h-screen pt-28 bg-[#FEF9F2]">
             <Header />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-20">
-                <ProductHero />
+                {/* <ProductHero /> */}
                 <div className="flex flex-col items-center text-center mt-8 sm:mt-16 mb-6 sm:mb-12">
                     <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-[#EAB308]/30 rounded-full bg-white mb-4 sm:mb-6 shadow-sm">
                         <span className="flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#F39200] animate-pulse"></span>

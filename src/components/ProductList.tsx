@@ -6,71 +6,8 @@ import { FiShoppingCart, FiSearch, FiFilter, FiChevronDown } from "react-icons/f
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import OrderForm from "./Order";
-
-const staticProducts = [
-    {
-        _uid: "static-1",
-        title: "Banana Chips Classic",
-        description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
-        price: 80,
-        image: { filename: "/assets/products/1.png" },
-        badge: "Best Seller",
-        rating: 4.9,
-        gram: "100g",
-        flavor: "Classic Salted",
-        category: "Chips"
-    },
-    {
-        _uid: "static-2",
-        title: "Mixture Spicy",
-        description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
-        price: 60,
-        image: { filename: "/assets/products/2.png" },
-        badge: "Spicy",
-        rating: 4.8,
-        gram: "100g",
-        flavor: "Hot & Spicy",
-        category: "Mixture"
-    },
-    {
-        _uid: "static-3",
-        title: "Potato Chips",
-        description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
-        price: 60,
-        image: { filename: "/assets/products/3.png" },
-        badge: "Traditional",
-        rating: 4.7,
-        gram: "50g",
-        flavor: "Masala",
-        category: "Chips"
-    },
-    {
-        _uid: "static-4",
-        title: "Banana Chips Masala",
-        description: "Crispy golden slices of Kerala's finest Nendran bananas,fried in pure coconut oil and organic kerala spices",
-        price: 80,
-        image: { filename: "/assets/products/4.png" },
-        badge: "Best Seller",
-        rating: 4.9,
-        gram: "100g",
-        flavor: "Chilly Garlic",
-        category: "Chips",
-        background: "linear-gradient(167.57deg, rgba(167, 197, 175, 0.72) 9.03%, rgba(81, 95, 84, 0.84) 89.01%)"
-    },
-    {
-        _uid: "static-5",
-        title: "Tapiaco Chips Spicy",
-        description: "A fiery blend of crispy Tapiaco chips fries and aromatic spices",
-        price: 50,
-        image: { filename: "/assets/products/5.png" },
-        badge: "Spicy",
-        rating: 4.1,
-        gram: "50g",
-        flavor: "Chips",
-        category: "Chips",
-        background: "linear-gradient(180deg, rgba(220, 169, 53, 0.65) 0%, rgba(118, 91, 28, 0.78) 100%)"
-    }
-];
+import { staticProducts } from "@/data/products";
+import Link from "next/link";
 
 export default function ProductList({ blok }: { blok?: any }) {
     const { addToCart } = useCart();
@@ -239,9 +176,13 @@ export default function ProductList({ blok }: { blok?: any }) {
                                         </div>
                                     )}
 
-                                    <div className="flex flex-col sm:flex-row items-center justify-between mt-auto pt-2 sm:pt-4 border-t border-zinc-50 gap-2 sm:gap-3">
-                                        <span className="font-black text-[#F39200] text-sm sm:text-2xl">₹{product.price}</span>
-                                        <div className="flex gap-1.5 sm:gap-2 w-full sm:w-auto">
+                                    {/* Action Section */}
+                                    <div className="mt-auto pt-3 sm:pt-5 border-t border-zinc-100/50">
+                                        <div className="flex items-center justify-between mb-2 sm:mb-4">
+                                            <div className="flex flex-col">
+                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-tight">Price</span>
+                                                <span className="font-black text-[#F39200] text-base sm:text-2xl leading-none">₹{product.price}</span>
+                                            </div>
                                             <button
                                                 onClick={() => addToCart({
                                                     id: product._uid,
@@ -251,10 +192,20 @@ export default function ProductList({ blok }: { blok?: any }) {
                                                     gram: product.gram,
                                                     flavor: product.flavor
                                                 })}
-                                                className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-zinc-200 text-zinc-600 hover:bg-[#F39200] hover:text-white hover:border-[#F39200] transition-all"
+                                                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-zinc-50 border border-zinc-200 text-zinc-600 hover:bg-[#F39200] hover:text-white hover:border-[#F39200] transition-all shadow-sm"
+                                                title="Add to Cart"
                                             >
-                                                <FiShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                                <FiShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                                             </button>
+                                        </div>
+
+                                        <div className="flex gap-2">
+                                            <Link
+                                                href={`/products/${product._uid}`}
+                                                className="flex-1 h-9 sm:h-11 flex items-center justify-center rounded-xl sm:rounded-2xl border border-zinc-200 text-zinc-500 hover:border-[#F39200] hover:text-[#F39200] transition-all text-[10px] sm:text-xs font-black uppercase tracking-wider bg-white"
+                                            >
+                                                Details
+                                            </Link>
                                             <button
                                                 onClick={() => setSelectedProduct({
                                                     title: product.title,
@@ -262,9 +213,9 @@ export default function ProductList({ blok }: { blok?: any }) {
                                                     price: product.price,
                                                     gram: product.gram
                                                 })}
-                                                className="flex-grow sm:px-6 h-8 sm:h-10 rounded-full font-extrabold text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] hover:scale-[1.02] transition-transform text-[10px] sm:text-sm"
+                                                className="flex-[2] h-9 sm:h-11 rounded-xl sm:rounded-2xl font-black text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] shadow-lg shadow-[#DF3920]/10 hover:shadow-[#DF3920]/20 active:scale-95 transition-all text-[10px] sm:text-xs uppercase tracking-wider"
                                             >
-                                                Order
+                                                Order Now
                                             </button>
                                         </div>
                                     </div>

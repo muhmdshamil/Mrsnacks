@@ -19,13 +19,13 @@ export default function Hero() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="order-1 lg:order-2 relative w-full flex justify-center lg:justify-end"
                 >
-                    <div className="relative w-full max-w-[650px]">
+                    <div className="relative w-full max-w-[700px]">
                         <div className="relative rounded-[32px] overflow-visible sm:overflow-hidden lg:overflow-visible group shadow-2xl">
                             <Image
-                                src="/assets/Hero/hero-ri.png"
+                                src="/assets/Hero/Hero.png"
                                 alt="Nendran Chips"
                                 width={800}
-                                height={600}
+                                height={700}
                                 className="w-full h-auto object-cover rounded-[32px]"
                                 priority
                             />

@@ -1,0 +1,128 @@
+export const staticProducts = [
+    {
+        _uid: "static-1",
+        title: "Banana Chips Classic",
+        description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
+        price: 80,
+        image: { filename: "/assets/products/1.png" },
+        images: [
+            "/assets/products/1.png",
+            "/assets/products/detail/bowl.png",
+            "/assets/products/detail/bananas.png",
+            "/assets/products/detail/frying.png"
+        ],
+        badge: "Best Seller",
+        rating: 4.9,
+        gram: "100g",
+        flavor: "Classic Salted",
+        category: "Chips",
+        origin: "Kerala, India",
+        oil: "Pure Coconut Oil",
+        shelfLife: "6 Months",
+        storage: "Cool & dry place",
+        weight: "150g",
+        features: [
+            "Made with hand-selected Nendran bananas",
+            "Fried in 100% pure coconut oil",
+            "No preservatives or artificial additives",
+            "Traditional Kerala family recipe",
+            "Small-batch handcrafted preparation",
+            "Farm-fresh ingredients sourced locally"
+        ]
+    },
+    {
+        _uid: "static-2",
+        title: "Mixture Spicy",
+        description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
+        price: 60,
+        image: { filename: "/assets/products/2.png" },
+        badge: "Spicy",
+        rating: 4.8,
+        gram: "100g",
+        flavor: "Hot & Spicy",
+        category: "Mixture",
+        origin: "Kerala, India",
+        oil: "Vegetable Oil",
+        shelfLife: "4 Months",
+        storage: "Cool & dry place",
+        weight: "100g",
+        features: [
+            "Spicy and crunchy",
+            "Authentic South Indian flavor",
+            "Perfect tea-time snack",
+            "Handpicked spices",
+            "Freshness locked packaging"
+        ]
+    },
+    {
+        _uid: "static-3",
+        title: "Potato Chips",
+        description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
+        price: 60,
+        image: { filename: "/assets/products/3.png" },
+        badge: "Traditional",
+        rating: 4.7,
+        gram: "50g",
+        flavor: "Masala",
+        category: "Chips",
+        origin: "Kerala, India",
+        oil: "Pure Coconut Oil",
+        shelfLife: "6 Months",
+        storage: "Cool & dry place",
+        weight: "50g",
+        features: [
+            "Thin and crispy",
+            "Sourced from local farms",
+            "Lightly salted",
+            "No artificial colors"
+        ]
+    },
+    {
+        _uid: "static-4",
+        title: "Banana Chips Masala",
+        description: "Crispy golden slices of Kerala's finest Nendran bananas,fried in pure coconut oil and organic kerala spices",
+        price: 80,
+        image: { filename: "/assets/products/4.png" },
+        badge: "Best Seller",
+        rating: 4.9,
+        gram: "100g",
+        flavor: "Chilly Garlic",
+        category: "Chips",
+        background: "linear-gradient(167.57deg, rgba(167, 197, 175, 0.72) 9.03%, rgba(81, 95, 84, 0.84) 89.01%)",
+        origin: "Kerala, India",
+        oil: "Pure Coconut Oil",
+        shelfLife: "6 Months",
+        storage: "Cool & dry place",
+        weight: "100g",
+        features: [
+            "Spicy Masala flavor",
+            "Traditional Nendran bananas",
+            "Fried in 100% pure coconut oil",
+            "Organic Kerala spices"
+        ]
+    },
+    {
+        _uid: "static-5",
+        title: "Tapiaco Chips Spicy",
+        description: "A fiery blend of crispy Tapiaco chips fries and aromatic spices",
+        price: 50,
+        image: { filename: "/assets/products/5.png" },
+        badge: "Spicy",
+        rating: 4.1,
+        gram: "50g",
+        flavor: "Chips",
+        category: "Chips",
+        background: "linear-gradient(180deg, rgba(220, 169, 53, 0.65) 0%, rgba(118, 91, 28, 0.78) 100%)",
+        origin: "Kerala, India",
+        oil: "Vegetable Oil",
+        shelfLife: "5 Months",
+        storage: "Cool & dry place",
+        weight: "50g",
+        features: [
+            "Hand-cut Tapioca",
+            "Fiery spice mix",
+            "Crunchy texture",
+            "Locally sourced"
+        ]
+    }
+];
