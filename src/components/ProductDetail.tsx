@@ -14,10 +14,11 @@ interface ProductDetailProps {
         title: string;
         description: string;
         price: number;
+        priceMapping?: Record<string, number>;
         image: { filename: string };
         badge?: string;
         rating: number;
-        gram: string;
+        gram: string | string[];
         flavor: string;
         category: string;
         background?: string;
@@ -50,6 +51,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 productFlavor={product.flavor}
                 productPrice={product.price}
                 productBaseWeight={product.gram}
+                priceMapping={product.priceMapping}
             />
 
             <Link href="/products" className="inline-flex items-center gap-2 text-zinc-500 hover:text-[#F39200] transition-colors mb-8 group">
@@ -151,7 +153,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                                 </div>
                                 <div>
                                     <p className="text-[10px] uppercase tracking-wider text-zinc-400 font-bold mb-1">Weight</p>
-                                    <p className="font-black text-zinc-900">{product.weight || product.gram || "150g"}</p>
+                                    <p className="font-black text-zinc-900">{product.weight ? (Array.isArray(product.weight) ? product.weight.join(", ") : product.weight) : (Array.isArray(product.gram) ? product.gram.join(", ") : product.gram) || "150g"}</p>
                                 </div>
                             </div>
                         </div>

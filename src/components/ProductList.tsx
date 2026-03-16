@@ -11,7 +11,13 @@ import Link from "next/link";
 
 export default function ProductList({ blok }: { blok?: any }) {
     const { addToCart } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<{ title: string; flavor: string; price: number; gram: string } | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<{
+        title: string;
+        flavor: string;
+        price: number;
+        gram: string | string[];
+        priceMapping?: Record<string, number>;
+    } | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
 
@@ -59,6 +65,7 @@ export default function ProductList({ blok }: { blok?: any }) {
                 productFlavor={selectedProduct?.flavor}
                 productPrice={selectedProduct?.price}
                 productBaseWeight={selectedProduct?.gram}
+                priceMapping={selectedProduct?.priceMapping}
             />
 
             {/* Filters & Search Header */}
@@ -211,7 +218,8 @@ export default function ProductList({ blok }: { blok?: any }) {
                                                     title: product.title,
                                                     flavor: product.flavor,
                                                     price: product.price,
-                                                    gram: product.gram
+                                                    gram: product.gram,
+                                                    priceMapping: product.priceMapping
                                                 })}
                                                 className="flex-[2] h-9 sm:h-11 rounded-xl sm:rounded-2xl font-black text-white bg-[linear-gradient(90deg,#DF3920_0%,#EAB308_100%)] shadow-lg shadow-[#DF3920]/10 hover:shadow-[#DF3920]/20 active:scale-95 transition-all text-[10px] sm:text-xs uppercase tracking-wider"
                                             >

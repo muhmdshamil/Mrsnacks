@@ -124,5 +124,89 @@ export const staticProducts = [
             "Crunchy texture",
             "Locally sourced"
         ]
+    },
+    {
+        _uid: "static-6",
+        title: "Morning Power Mix",
+        description: "A wholesome blend of roasted nuts, seeds, and dried fruits designed to kickstart your day with natural energy.",
+        price: 349,
+        priceMapping: {
+            "250g": 349,
+            "120g": 249
+        },
+        image: { filename: "/assets/products/morningpowermix.png" },
+        badge: "Healthy",
+        rating: 4.8,
+        gram: ["250g", "120g"],
+        flavor: "Natural & Nutty",
+        category: "Health Mix",
+        background: "linear-gradient(180deg, rgba(245, 166, 35, 0.65) 0%, rgba(184, 115, 51, 0.78) 100%)",
+        origin: "Kerala, India",
+        oil: "Dry Roasted",
+        shelfLife: "5 Months",
+        storage: "Cool & dry place",
+        weight: ["250g", "120g"],
+        features: [
+            "Nutrient-rich blend",
+            "Morning energy booster",
+            "100% natural ingredients",
+            "Perfect breakfast companion"
+        ]
+    },
+    {
+        _uid: "static-7",
+        title: "Power Protein Mix",
+        description: "A high-protein powerhouse featuring premium almonds, cashews, and protein-rich seeds for post-workout recovery.",
+        price: 549,
+        priceMapping: {
+            "250g": 549,
+            "120g": 299
+        },
+        image: { filename: "/assets/products/powerpro.png" },
+        badge: "Protein Rich",
+        rating: 4.9,
+        gram: ["250g", "120g"],
+        flavor: "Roasted Nutty",
+        category: "Protein Mix",
+        background: "linear-gradient(180deg, rgba(29, 78, 216, 0.65) 0%, rgba(30, 58, 138, 0.78) 100%)",
+        origin: "Kerala, India",
+        oil: "Dry Roasted",
+        shelfLife: "5 Months",
+        storage: "Cool & dry place",
+        weight: ["250g", "120g"],
+        features: [
+            "High in plant protein",
+            "Rich in Omega-3 fatty acids",
+            "Premium dry fruits and seeds",
+            "No added preservatives"
+        ]
+    },
+    {
+        _uid: "static-8",
+        title: "Honey Gold Mix",
+        description: "Deliciously crunchy nuts and seeds glazed with pure, organic honey for a naturally sweet and healthy treat.",
+        price: 449,
+        priceMapping: {
+            "300g": 449,
+            "180g": 299
+        },
+        image: { filename: "/assets/products/honeygoldmix.png" },
+        badge: "Sweet & Healthy",
+        rating: 4.7,
+        gram: ["300g", "180g"],
+        flavor: "Honey Glazed",
+        category: "Sweet Mix",
+        background: "linear-gradient(180deg, rgba(218, 165, 32, 0.65) 0%, rgba(184, 134, 11, 0.78) 100%)",
+        origin: "Kerala, India",
+        oil: "Honey Glazed",
+        shelfLife: "5 Months",
+        storage: "Cool & dry place",
+        weight: ["300g", "180g"],
+        features: [
+            "Pure organic honey coating",
+            "Crunchy and satisfying",
+            "Rich in antioxidants",
+            "Kid-friendly healthy snack"
+        ]
     }
 ];

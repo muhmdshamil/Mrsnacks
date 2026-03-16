@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Products from "@/components/Products";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokComponent } from "@storyblok/react";
@@ -58,6 +59,7 @@ export default async function Home() {
           <Products limit={3} />
         )}
       </div>
+      <Testimonials />
       <Footer />
     </main>
   );

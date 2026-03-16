@@ -121,7 +121,7 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
                         {/* Image Section */}
                         <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-[24px] overflow-hidden flex items-center justify-center mb-6">
                             {/* Top Badges */}
-                            <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+                            {/* <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
                                 {product.gram && (
                                     <div className="px-3 py-1 rounded-full text-[10px] font-bold bg-white/80 backdrop-blur-md text-zinc-700 shadow-sm border border-black/5">
                                         {product.gram}
@@ -132,7 +132,7 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
                                         {product.flavor}
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
 
                             <Image
                                 src={product.image?.filename || ""}

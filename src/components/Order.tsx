@@ -10,18 +10,28 @@ type OrderFormProps = {
     productName?: string;
     productFlavor?: string;
     productPrice?: number;
-    productBaseWeight?: string;
+    productBaseWeight?: string | string[];
+    priceMapping?: Record<string, number>;
     cartItems?: any[];
 };
 
-export default function OrderForm({ isOpen, onClose, productName, productFlavor, productPrice, productBaseWeight, cartItems }: OrderFormProps) {
+export default function OrderForm({
+    isOpen,
+    onClose,
+    productName,
+    productFlavor,
+    productPrice,
+    productBaseWeight,
+    priceMapping,
+    cartItems
+}: OrderFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
         location: "",
         flavor: productFlavor || productName || "Original",
-        weight: productBaseWeight || "100g",
+        weight: (Array.isArray(productBaseWeight) ? productBaseWeight[0] : productBaseWeight) || "100g",
     });
 
     // Reset flavor when product changes or modal opens
@@ -30,17 +40,27 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
             setFormData(prev => ({
                 ...prev,
                 flavor: productFlavor || productName || "Original",
-                weight: productBaseWeight || "100g"
+                weight: (Array.isArray(productBaseWeight) ? productBaseWeight[0] : productBaseWeight) || "100g"
             }));
         }
     }, [isOpen, productName, productFlavor, productBaseWeight]);
 
 
     const flavors = ["Peri Peri", "Chilly Garlic"];
-    const weights = ["50g", "100g", "250g", "500g", "1kg"];
+    const defaultWeights = ["50g", "100g", "250g", "500g", "1kg"];
+    const weights = Array.isArray(productBaseWeight) ? productBaseWeight : defaultWeights;
 
     const calculateCurrentPrice = () => {
-        if (!productPrice || !productBaseWeight) return 0;
+        if (!productPrice) return 0;
+
+        // 1. Check if we have an explicit price mapping for this weight
+        if (priceMapping && priceMapping[formData.weight]) {
+            return priceMapping[formData.weight];
+        }
+
+        // 2. Fallback to ratio-based calculation
+        const baseWeightStr = Array.isArray(productBaseWeight) ? productBaseWeight[0] : productBaseWeight;
+        if (!baseWeightStr) return productPrice;
 
         const getGrams = (w: string) => {
             const val = parseInt(w);
@@ -49,7 +69,7 @@ export default function OrderForm({ isOpen, onClose, productName, productFlavor,
         };
 
         const currentGrams = getGrams(formData.weight);
-        const baseGrams = getGrams(productBaseWeight);
+        const baseGrams = getGrams(baseWeightStr);
 
         return Math.round((currentGrams / baseGrams) * productPrice);
     };
