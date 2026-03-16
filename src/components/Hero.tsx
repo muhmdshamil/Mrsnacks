@@ -35,7 +35,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1, duration: 0.5 }}
-                                className="absolute top-4 right-4 sm:top-8 sm:-right-8 bg-white/95 backdrop-blur px-5 py-2.5 rounded-full flex items-center gap-2 border border-black/5 shadow-xl animate-bounce-slow"
+                                className="absolute top-4 right-4 sm:top-8 sm:-right-8 bg-white/95 backdrop-blur px-5 py-2.5 rounded-full hidden sm:flex items-center gap-2 border border-black/5 shadow-xl animate-bounce-slow"
                             >
                                 <span className="text-xl">🌶️</span>
                                 <span className="text-[#DF3920] font-bold text-sm">Hot & Crispy</span>
@@ -46,7 +46,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1.2, duration: 0.5 }}
-                                className="absolute bottom-16 -left-4 sm:bottom-12 sm:-left-12 bg-white/95 backdrop-blur p-4 sm:p-5 rounded-3xl shadow-2xl border border-black/5 flex items-center gap-4 max-w-[240px]"
+                                className="absolute bottom-16 -left-4 sm:bottom-12 sm:-left-12 bg-white/95 backdrop-blur p-4 sm:p-5 rounded-3xl shadow-2xl border border-black/5 hidden sm:flex items-center gap-4 max-w-[240px]"
                             >
                                 <div className="w-12 h-12 bg-[#F6F1EA] rounded-xl flex items-center justify-center text-2xl shadow-inner shrink-0">🍌</div>
                                 <div>
@@ -93,7 +93,7 @@ export default function Hero() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="text-[2.75rem] sm:text-6xl md:text-6xl  font-bold text-[#27272A] tracking-tight"
+                        className="text-[2.75rem] text-4xl md:text-6xl  font-bold text-[#27272A] tracking-tight"
                     >
                         Taste the
                         <span className="bg-gradient-to-r from-[#F7AC1A] to-[#DB8300] text-transparent bg-clip-text">Golden</span> <br className="hidden lg:block" />
@@ -125,7 +125,7 @@ export default function Hero() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </Link>
-                        <Link href="/story"className="border border-zinc-200 bg-transparent text-zinc-800 px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
+                        <Link href="/story" className="border border-zinc-200 bg-transparent text-zinc-800 px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
                             <svg className="w-6 h-6 text-[#22C55E]" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M17.5 2C16.5 2 15.5 2.2 14.5 2.6C12.5 3.3 11 5 10.5 7C10.2 8.3 10.4 9.7 11.2 10.8L3.6 18.4C3.2 18.8 3.2 19.5 3.6 19.9L4.1 20.4C4.5 20.8 5.2 20.8 5.6 20.4L13.2 12.8C14.3 13.6 15.7 13.8 17 13.5C19 13 20.7 11.5 21.4 9.5C21.8 8.5 22 7.5 22 6.5C22 4 20 2 17.5 2ZM17 9.5C16.2 9.5 15.5 8.8 15.5 8C15.5 7.2 16.2 6.5 17 6.5C17.8 6.5 18.5 7.2 18.5 8C18.5 8.8 17.8 9.5 17 9.5Z" />
                             </svg>
