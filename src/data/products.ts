@@ -191,7 +191,7 @@ export const staticProducts = [
             "180g": 299
         },
         image: { filename: "/assets/products/honeygoldmix.png" },
-        badge: "Sweet & Healthy",
+        badge: "Healthy",
         rating: 4.7,
         gram: ["300g", "180g"],
         flavor: "Honey Glazed",

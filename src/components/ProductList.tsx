@@ -129,12 +129,12 @@ export default function ProductList({ blok }: { blok?: any }) {
                                 >
                                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 flex justify-between items-start z-10">
                                         {product.gram && (
-                                            <div className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold bg-white/80 backdrop-blur-md text-zinc-700 shadow-sm border border-black/5">
+                                            <div className="hidden sm:block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold bg-white/80 backdrop-blur-md text-zinc-700 shadow-sm border border-black/5">
                                                 {product.badge}
                                             </div>
                                         )}
                                         {product.flavor && (
-                                            <div className="px-2 py-0.5 sm:px-4 sm:py-1.5 rounded-full text-[8px] sm:text-xs font-bold bg-[#FACC15] text-zinc-900 shadow-sm">
+                                            <div className="hidden sm:block px-2 py-0.5 sm:px-4 sm:py-1.5 rounded-full text-[8px] sm:text-xs font-bold bg-[#FACC15] text-zinc-900 shadow-sm">
                                                 {product.flavor}
                                             </div>
                                         )}
