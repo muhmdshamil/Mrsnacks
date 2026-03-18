@@ -157,7 +157,7 @@ export const staticProducts = [
         _uid: "static-7",
         title: "Power Protein Mix",
         description: "A high-protein powerhouse featuring premium almonds, cashews, and protein-rich seeds for post-workout recovery.",
-        price: 549,
+        price: 299,
         priceMapping: {
             "250g": 549,
             "120g": 299

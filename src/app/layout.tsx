@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "mrsnackz - Authentic Kerala Banana Chips & Snacks",
+    title: "mrsnackz | Best Snacks website in kerala",
     description: "Handcrafted Nendran banana chips from the heart of Kerala. Pure, crispy, and delicious.",
     url: "https://www.mrsnackz.com",
     siteName: "mrsnackz",
