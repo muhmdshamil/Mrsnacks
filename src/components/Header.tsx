@@ -30,7 +30,7 @@ export default function Header() {
                             <div className="rounded-lg">
                                 <Image
                                     src="/assets/logo/logo.png"
-                                    alt="Mr Snackz"
+                                    alt="mrsnackz"
                                     width={80}
                                     height={40}
                                     className="h-10 sm:h-12 w-auto object-contain"
@@ -129,7 +129,7 @@ export default function Header() {
                             <div className="flex items-center justify-between p-6 border-b border-black/5">
                                 <Image
                                     src="/assets/logo/logo.png"
-                                    alt="Mr Snackz"
+                                    alt="mrsnackz"
                                     width={80}
                                     height={40}
                                     className="h-10 w-auto object-contain"

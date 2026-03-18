@@ -42,7 +42,7 @@ export default function ProductList({ blok }: { blok?: any }) {
     }));
 
 
-    const allItems = useMemo(() => [...staticProducts, ...dynamicItems], [dynamicItems]);
+    const allItems = useMemo(() => [...dynamicItems, ...[...staticProducts].reverse()], [dynamicItems]);
 
     // Filtering logic
     const filteredItems = useMemo(() => {

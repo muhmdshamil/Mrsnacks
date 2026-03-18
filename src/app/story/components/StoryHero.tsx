@@ -40,7 +40,7 @@ export default function StoryHero() {
                     </h1>
 
                     <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-                        Mr. Snackz is a snack brand founded in 2024 in Perinthalmanna,
+                        mrsnackz is a snack brand founded in 2024 in Perinthalmanna,
                         Malappuram, Kerala, bringing authentic Kerala snack flavors crafted
                         with care and tradition. Every product is prepared using 100% pure
                         coconut oil and carefully selected ingredients to deliver freshness,

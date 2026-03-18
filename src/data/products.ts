@@ -185,7 +185,7 @@ export const staticProducts = [
         _uid: "static-8",
         title: "Honey Gold Mix",
         description: "Deliciously crunchy nuts and seeds glazed with pure, organic honey for a naturally sweet and healthy treat.",
-        price: 449,
+        price: 299,
         priceMapping: {
             "300g": 449,
             "180g": 299

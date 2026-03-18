@@ -16,7 +16,7 @@ export default function Footer() {
                         <Link href="/" className="inline-block">
                             <Image
                                 src="/assets/logo/logo.png"
-                                alt="Mr Snackz"
+                                alt="mrsnackz"
                                 width={120}
                                 height={60}
                                 className="h-16 w-auto object-contain"
@@ -27,10 +27,10 @@ export default function Footer() {
                             doorstep. Handcrafted with love since 1975.
                         </p>
                         <div className="flex items-center gap-4 mt-2">
-                            <a href="#" className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all">
+                            <a href="https://www.instagram.com/mrsnackz_?igsh=MXg1d2swa3IwcHV1Mg==" className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all">
                                 <FaInstagram className="w-4 h-4 text-white/80" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all">
+                            <a href="https://www.facebook.com/share/1JQX42Qean/" className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all">
                                 <FaFacebookF className="w-4 h-4 text-white/80" />
                             </a>
                             <a href="#" className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all">

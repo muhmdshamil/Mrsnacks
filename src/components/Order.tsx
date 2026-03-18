@@ -104,9 +104,8 @@ export default function OrderForm({
                 `*Price:* ₹${currentTotalPrice}`;
         }
 
-        const message = `*New Order from Mr Snackz Website*\n\n` +
+        const message = `*New Order from mrsnackz Website*\n\n` +
             `*Name:* ${formData.name}\n` +
-            `*Email:* ${formData.email}\n` +
             `*Phone:* ${formData.phone}\n` +
             `*Location:* ${formData.location}\n\n` +
             orderDetails;
@@ -166,21 +165,7 @@ export default function OrderForm({
                             </div>
 
                             {/* Email & Phone */}
-                            <div className="grid sm:grid-cols-2 gap-4">
-                                <div className="flex flex-col gap-1.5">
-                                    <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Email</label>
-                                    <div className="relative">
-                                        <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
-                                        <input
-                                            required
-                                            type="email"
-                                            placeholder="Your email"
-                                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:border-[#DF3920] focus:ring-4 focus:ring-[#DF3920]/5 transition-all outline-none"
-                                            value={formData.email}
-                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        />
-                                    </div>
-                                </div>
+                            <div className="grid sm:grid-cols-1 gap-4">
                                 <div className="flex flex-col gap-1.5">
                                     <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Phone Number</label>
                                     <div className="relative">

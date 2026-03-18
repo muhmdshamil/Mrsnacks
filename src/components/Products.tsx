@@ -8,44 +8,7 @@ import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import OrderForm from "./Order";
 
-const staticProducts = [
-    {
-        _uid: "static-1",
-        title: "Banana Chips Classic",
-        description: "Crispy golden slices of Kerala's finest Nendran bananas, fried in pure coconut oil",
-        price: 80,
-        image: { filename: "/assets/products/1.png" },
-        badge: "Best Seller",
-        rating: 4.9,
-        gram: "100g",
-        flavor: "Classic Salted",
-        category: "Chips"
-    },
-    {
-        _uid: "static-2",
-        title: "Mixture Spicy",
-        description: "A fiery blend of crispy noodles, peanuts, curry leaves, and aromatic spices",
-        price: 60,
-        image: { filename: "/assets/products/2.png" },
-        badge: "Spicy",
-        rating: 4.8,
-        gram: "100g",
-        flavor: "Hot & Spicy",
-        category: "Mixture"
-    },
-    {
-        _uid: "static-3",
-        title: "Potato Chips",
-        description: "Crunchy cassava chips with a hint of salt, a Kerala household favorite",
-        price: 60,
-        image: { filename: "/assets/products/3.png" },
-        badge: "Traditional",
-        rating: 4.7,
-        gram: "50g",
-        flavor: "Masala",
-        category: "Chips"
-    },
-];
+import { staticProducts } from "@/data/products";
 import { storyblokEditable } from "@storyblok/react";
 
 export default function Products({ blok, limit }: { blok?: any; limit?: number }) {
@@ -64,7 +27,7 @@ export default function Products({ blok, limit }: { blok?: any; limit?: number }
         }
     }
 
-    let items = [...staticProducts, ...dynamicItems];
+    let items = [...dynamicItems, ...[...staticProducts].reverse()];
 
     const displayLimit = limit || blok?.limit;
 

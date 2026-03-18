@@ -1,9 +1,19 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Hero() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const heroImages = ["/assets/Hero/Hero.png", "/assets/Hero/hero2.png"];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroImages.length]);
     return (
         <section
             className="relative pt-[120px] lg:pt-[160px] pb-10 px-6 w-full min-h-screen flex items-center overflow-x-clip"
@@ -21,14 +31,26 @@ export default function Hero() {
                 >
                     <div className="relative w-full max-w-[700px]">
                         <div className="relative rounded-[32px] overflow-visible sm:overflow-hidden lg:overflow-visible group shadow-2xl">
-                            <Image
-                                src="/assets/Hero/Hero.png"
-                                alt="Nendran Chips"
-                                width={800}
-                                height={700}
-                                className="w-full h-auto object-cover rounded-[32px]"
-                                priority
-                            />
+                            <div className="relative w-full h-[400px] rounded-[32px] overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={currentSlide}
+                                        initial={{ opacity: 0, scale: 1.1 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.95 }}
+                                        transition={{ duration: 1, ease: "easeInOut" }}
+                                        className="absolute inset-0 w-full h-full"
+                                    >
+                                        <Image
+                                            src={heroImages[currentSlide]}
+                                            alt="Nendran Chips"
+                                            fill
+                                            className="object-cover"
+                                            priority
+                                        />
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
 
                             {/* Floating Badge: Hot & Crispy */}
                             <motion.div
@@ -95,10 +117,8 @@ export default function Hero() {
                         transition={{ delay: 0.2, duration: 0.6 }}
                         className="text-[2.75rem] text-4xl md:text-6xl  font-bold text-[#27272A] tracking-tight"
                     >
-                        Taste the
-                        <span className="bg-gradient-to-r from-[#F7AC1A] to-[#DB8300] text-transparent bg-clip-text">Golden</span> <br className="hidden lg:block" />
-                        Crunch of <br className="hidden sm:block lg:hidden" />
-                        <span className="text-[#B1BB37]">Kerala</span>
+                        Purely <span className="bg-gradient-to-r from-[#F7AC1A] to-[#DB8300] text-transparent bg-clip-text">Healthy.</span> <br />
+                        Perfectly <span className="text-[#B1BB37]">Tasty.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -107,9 +127,7 @@ export default function Hero() {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="text-base sm:text-lg md:text-xl text-[#52525B] max-w-[500px] leading-relaxed"
                     >
-                        Artisan-crafted in <span className="font-bold text-[#27272A]">pure coconut oil</span>, our Nendran banana
-                        chips carry a 50-year-old family recipe. Every bite is a
-                        journey to Kerala.
+                        Wholesome, nutrient rich snacks designed to fuel your day without compromising on taste.
                     </motion.p>
 
                     <motion.div
