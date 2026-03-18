@@ -31,7 +31,7 @@ export default function Hero() {
                 >
                     <div className="relative w-full max-w-[700px]">
                         <div className="relative rounded-[32px] overflow-visible sm:overflow-hidden lg:overflow-visible group shadow-2xl">
-                            <div className="relative w-full h-[400px] rounded-[32px] overflow-hidden">
+                            <div className="relative w-full h-[200px] lg:h-[400px] rounded-[32px] overflow-hidden">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={currentSlide}
