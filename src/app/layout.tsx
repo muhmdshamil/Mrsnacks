@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mrsnackz.com"),
+  metadataBase: new URL("https://www.mrsnackz.com"),
   title: {
     default: "mrsnackz - Authentic Kerala Banana Chips & Snacks",
     template: "%s | mrsnackz"
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "mrsnackz - Authentic Kerala Banana Chips & Snacks",
     description: "Handcrafted Nendran banana chips from the heart of Kerala. Pure, crispy, and delicious.",
-    url: "https://mrsnackz.com",
+    url: "https://www.mrsnackz.com",
     siteName: "mrsnackz",
     images: [
       {
@@ -53,7 +53,20 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
+};
+
+export const viewport = {
+  themeColor: "#FEF9F2",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
