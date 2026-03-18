@@ -13,7 +13,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mrsnackz.com"),
   title: {
-    default: "mrsnackz - Authentic Kerala Banana Chips & Snacks",
+    default: "mrsnackz | Best Snacks website in kerala",
     template: "%s | mrsnackz"
   },
   description: "Experience the authentic taste of Kerala with mrsnackz. Artisan-crafted Nendran banana chips, spicy mixtures, and traditional treats made with pure coconut oil.",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "mrsnackz - The Golden Crunch of Kerala",
+    title: "mrsnackz | Best Snacks website in kerala",
     description: "Premium handcrafted Kerala snacks delivered to your door.",
     images: ["/assets/logo/logo.png"],
   },

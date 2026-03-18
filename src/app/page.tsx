@@ -9,10 +9,10 @@ import { StoryblokComponent } from "@storyblok/react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "mrsnackz - Authentic Kerala Banana Chips & Snacks",
+  title: "mrsnackz | Best Snacks website in kerala",
   description: "Experience the unique taste of Kerala with mrsnackz. Artisan-crafted Nendran banana chips, spicy mixtures, and traditional treats made with pure coconut oil and love.",
   openGraph: {
-    title: "mrsnackz - The Golden Crunch of Kerala",
+    title: "mrsnackz | Best Snacks website in kerala",
     description: "Pure, crispy, and authentic Nendran banana chips from the heart of Kerala. Experience real taste with mrsnackz.",
     url: "https://www.mrsnackz.com",
     images: [{ url: "/assets/logo/logo.png", width: 800, height: 600 }]
