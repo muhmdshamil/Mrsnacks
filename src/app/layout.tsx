@@ -13,30 +13,31 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mrsnackz.com"),
   title: {
-    default: "mrsnackz | Best Snacks website in kerala",
+    default: "mrsnackz   |   Best Snacks website in kerala .",
     template: "%s | mrsnackz"
   },
-  description: "Experience the authentic taste of Kerala with mrsnackz. Artisan-crafted Nendran banana chips, spicy mixtures, and traditional treats made with pure coconut oil.",
-  keywords: ["banana chips", "kerala snacks", "nendran chips", "mrsnacks", "mrsnackz", "authentic south indian snacks", "coconut oil fried snacks"],
+  description: "Experience the unique and authentic taste of Kerala with mrsnackz. Artisan-crafted Nendran banana chips, spicy mixtures, and traditional treats made with pure coconut oil and love.",
+  keywords: ["banana chips", "kerala snacks", "nendran chips", "mrsnacks", "mrsnackz", "authentic south indian snacks", "coconut oil fried snacks", "best snacks in kerala"],
   authors: [{ name: "mrsnackz" }],
   icons: {
     icon: [
-      { url: "/favicon.ico" },
       { url: "/assets/logo/logo.png", sizes: "32x32", type: "image/png" },
       { url: "/assets/logo/logo.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
     apple: [
       { url: "/assets/logo/logo.png", sizes: "180x180", type: "image/png" },
     ],
   },
+
   openGraph: {
-    title: "mrsnackz | Best Snacks website in kerala",
-    description: "Handcrafted Nendran banana chips from the heart of Kerala. Pure, crispy, and delicious.",
+    title: "mrsnackz   |   Best Snacks website in kerala .",
+    description: "Handcrafted Nendran banana chips from the heart of Kerala. Pure, crispy, and delicious artisan snacks.",
     url: "https://www.mrsnackz.com",
     siteName: "mrsnackz",
     images: [
       {
-        url: "/favicon.ico",
+        url: "/assets/logo/logo.png",
         width: 800,
         height: 600,
       },
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "mrsnackz | Best Snacks website in kerala",
+    title: "mrsnackz   |   Best Snacks website in kerala .",
     description: "Premium handcrafted Kerala snacks delivered to your door.",
     images: ["/assets/logo/logo.png"],
   },
@@ -62,6 +63,7 @@ export const metadata: Metadata = {
     },
   },
 };
+
 
 export const viewport = {
   themeColor: "#FEF9F2",
