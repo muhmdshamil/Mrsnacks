@@ -47,8 +47,8 @@ export default function OrderForm({
 
 
     const flavors = ["Peri Peri", "Chilly Garlic"];
-    const defaultWeights = ["50g", "100g", "250g", "500g", "1kg"];
-    const weights = Array.isArray(productBaseWeight) ? productBaseWeight : defaultWeights;
+    const weights = Array.isArray(productBaseWeight) ? productBaseWeight : [];
+    const isWeightSelectable = weights.length > 1;
 
     const calculateCurrentPrice = () => {
         if (!productPrice) return 0;
@@ -220,13 +220,19 @@ export default function OrderForm({
                                         <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider ml-1">Weight</label>
                                         <div className="relative">
                                             <FiPackage className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
-                                            <select
-                                                className="w-full pl-11 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:border-[#DF3920] transition-all appearance-none outline-none"
-                                                value={formData.weight}
-                                                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-                                            >
-                                                {weights.map(w => <option key={w} value={w}>{w}</option>)}
-                                            </select>
+                                            {isWeightSelectable ? (
+                                                <select
+                                                    className="w-full pl-11 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:border-[#DF3920] transition-all appearance-none outline-none"
+                                                    value={formData.weight}
+                                                    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                                                >
+                                                    {weights.map(w => <option key={w} value={w}>{w}</option>)}
+                                                </select>
+                                            ) : (
+                                                <div className="w-full pl-11 pr-4 py-3.5 bg-zinc-50 border border-zinc-200 rounded-2xl text-zinc-600">
+                                                    {formData.weight}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
