@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import VideoComponent from "@/components/VideoComponent";
 import Products from "@/components/Products";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
@@ -65,6 +66,7 @@ export default async function Home() {
       <Header />
       <Hero />
       <About />
+      <VideoComponent />
       <div id="products">
         {story ? (
           <StoryblokComponent blok={story.content} limit={3} />
