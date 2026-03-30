@@ -40,7 +40,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     // Use product images if provided, fallback to repeating the main image
     const images = product.images && product.images.length > 0
         ? product.images
-        : [product.image.filename, product.image.filename, product.image.filename, product.image.filename];
+        : [product.image.filename, product.image.filename, product.image.filename];
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -65,7 +65,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="relative aspect-square rounded-[40px] overflow-hidden flex items-center justify-center p-12"
+                        className="relative aspect-square rounded-[40px] overflow-hidden flex items-center justify-center"
                         style={{ background: product.background || '#F4F4F5' }}
                     >
                         <Image
@@ -73,23 +73,23 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                             alt={product.title}
                             width={600}
                             height={600}
-                            className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                     </motion.div>
 
-                    <div className="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-3 gap-4">
                         {images.map((img, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => setSelectedImage(idx)}
-                                className={`relative aspect-square rounded-2xl overflow-hidden border-2 transition-all p-2 bg-zinc-50 ${selectedImage === idx ? 'border-[#F39200] scale-95' : 'border-transparent hover:border-zinc-200'
+                                className={`relative aspect-square rounded-2xl overflow-hidden border-2 transition-all bg-zinc-50 ${selectedImage === idx ? 'border-[#F39200] scale-95' : 'border-transparent hover:border-zinc-200'
                                     }`}
                             >
                                 <Image
                                     src={img}
                                     alt={`${product.title} thumbnail ${idx + 1}`}
                                     fill
-                                    className="object-contain p-1"
+                                    className="object-cover"
                                 />
                             </button>
                         ))}

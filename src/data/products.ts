@@ -8,8 +8,7 @@ export const staticProducts = [
         images: [
             "/assets/products/1.png",
             "/assets/products/detail/bowl.png",
-            "/assets/products/detail/bananas.png",
-            "/assets/products/detail/frying.png"
+            "/assets/products/detail/bananas.png"
         ],
         badge: "Best Seller",
         rating: 4.9,
@@ -83,6 +82,11 @@ export const staticProducts = [
         description: "Crispy golden slices of Kerala's finest Nendran bananas,fried in pure coconut oil and organic kerala spices",
         price: 80,
         image: { filename: "/assets/products/4.png" },
+        images: [
+            "/assets/products/4.png",
+            "/assets/products/detail/masala1.png",
+            "/assets/products/detail/masala2.png"
+        ],
         badge: "Best Seller",
         rating: 4.9,
         gram: "100g",
