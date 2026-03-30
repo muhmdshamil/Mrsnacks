@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { FiPlay, FiCheckCircle } from "react-icons/fi";
 import { LuChefHat, LuLeaf, LuFlame } from "react-icons/lu";
@@ -25,6 +26,20 @@ export default function HowWeMake() {
         },
     ];
 
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const togglePlay = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (videoRef.current) {
+            if (videoRef.current.paused) {
+                videoRef.current.play().catch(err => console.error("Video play error:", err));
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    };
+
     return (
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-14 flex flex-col items-center overflow-hidden">
             {/* Badge and Header */}
@@ -46,43 +61,56 @@ export default function HowWeMake() {
                 </p>
             </motion.div>
 
-            {/* Video Thumbnail */}
+            {/* Video Container */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative w-full aspect-[16/9] max-h-[600px] rounded-[40px] sm:rounded-[60px] overflow-hidden shadow-2xl mb-12 group cursor-pointer group"
+                className="relative w-full aspect-[16/9] max-h-[600px] rounded-[40px] sm:rounded-[60px] overflow-hidden shadow-2xl mb-12 group"
             >
-                <Image
-                    src="/assets/story/video.jpg"
-                    alt="How we make our snacks"
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                    priority
-                />
+                <video
+                    ref={videoRef}
+                    onClick={togglePlay}
+                    className={`w-full h-full object-cover transition-transform duration-1000 ${!isPlaying ? "group-hover:scale-105" : ""
+                        }`}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    onEnded={() => setIsPlaying(false)}
+                    playsInline
+                    preload="metadata"
+                    controls={isPlaying}
+                >
+                    <source src="/assets/story/video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
 
                 {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative flex items-center justify-center">
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 1, delay: 0.8 }}
-                            className="absolute w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-white/20 blur-xl animate-pulse"
-                        ></motion.div>
+                {!isPlaying && (
+                    <div
+                        onClick={togglePlay}
+                        className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors group-hover:bg-black/20 cursor-pointer"
+                    >
+                        <div className="relative flex items-center justify-center">
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.8 }}
+                                className="absolute w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-white/20 blur-xl animate-pulse"
+                            ></motion.div>
 
-                        <motion.div
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white/90 backdrop-blur-md shadow-2xl flex items-center justify-center transition-transform duration-300"
-                        >
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#f5982f] flex items-center justify-center pl-1.5">
-                                <FiPlay className="w-8 h-8 sm:w-10 sm:h-10 text-[#f5982f] fill-transparent" />
-                            </div>
-                        </motion.div>
+                            <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white/90 backdrop-blur-md shadow-2xl flex items-center justify-center transition-transform duration-300"
+                            >
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#f5982f] flex items-center justify-center pl-1.5">
+                                    <FiPlay className="w-8 h-8 sm:w-10 sm:h-10 text-[#f5982f] fill-[#f5982f]" />
+                                </div>
+                            </motion.div>
+                        </div>
                     </div>
-                </div>
+                )}
             </motion.div>
 
             {/* Steps Grid */}
